@@ -17,7 +17,11 @@ const App = () => {
     try {
       let base_url=import.meta.env.VITE_REACT_API_URL
       const response = await axios.get(`${base_url}/?url=${url}`);
-      setTableData(response.data);
+      setTableData(response.data.sort((a, b) => {
+        let numA = parseInt(a[0].split('. ')[0]);
+        let numB = parseInt(b[0].split('. ')[0]);
+        return numA - numB;
+    }));
       setError('');
     } catch (error) {
       setError('Error fetching data from the server');
