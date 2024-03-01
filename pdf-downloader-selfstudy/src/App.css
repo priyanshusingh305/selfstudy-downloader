@@ -77,12 +77,14 @@ th, td {
   text-align: left;
 }
 
-a{    font-weight: 500;
+.anchor{    font-weight: bold;
   color: white;
   text-decoration: underline;
   background-color: #4CAF50;
 }
-
+.anchor:hover {
+  color:grey;
+}
 @media (max-width: 600px) {
 
   .container{

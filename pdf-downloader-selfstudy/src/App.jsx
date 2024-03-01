@@ -53,7 +53,7 @@ const App = () => {
 
             <tr key={index}>
               <td>{data[0]}</td>
-              <td><a href={data[1]} target="_blank" rel="noopener noreferrer">Download now</a>
+              <td><a className='anchor' href={data[1]} target="_blank" rel="noopener noreferrer">Download now</a>
 </td>
             </tr>
           ))}
