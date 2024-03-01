@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import "./App.css"
 
 
 const App = () => {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState([]);
   const [tableData, setTableData] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,21 +22,26 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
+    <div className='layout'>
+    <div className='heading'>
+    <h1>Selfstudys PDF Downloader</h1>
+    </div>
+    <div className='container'>
       <form onSubmit={handleSubmit}>
         <label>
  
-          Enter URL:
           <input
             type="text"
             value={url}
+            placeholder='Selfstudys url'
             onChange={(e) => setUrl(e.target.value)}
           />
         </label>
-        <button type="submit">Fetch Data</button>
+        <button type="submit">Download</button>
       </form>
       {error && <p>{error}</p>}
-      <table>
+      {tableData.length === 0 ?(<div></div>):(      <table>
         <thead>
           <tr>
             <th>Name</th>
@@ -53,8 +58,11 @@ const App = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table>)}
+
     </div>
+    </div>
+    </>
   );
 };
 
