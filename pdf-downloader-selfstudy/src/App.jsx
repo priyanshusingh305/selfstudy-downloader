@@ -40,7 +40,7 @@ const App = () => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Last Part Without Extension</th>
+            <th>Download</th>
           </tr>
         </thead>
         <tbody>
