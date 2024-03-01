@@ -52,10 +52,12 @@ button[type="submit"] {
   border-radius: 4px;
   cursor: pointer;
   float: right;
+  margin-bottom:2%;
 }
 
 button[type="submit"]:hover {
   background-color: #45a049;
+
 }
 
 table {
