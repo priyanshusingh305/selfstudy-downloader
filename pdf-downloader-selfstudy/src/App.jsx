@@ -7,7 +7,8 @@ const App = () => {
   const [url, setUrl] = useState("");
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
+  const [noOutput,setNoOutput]=useState(false)
   const tableControls = useAnimation(); 
 
   const handleSubmit = async (e) => {
@@ -22,24 +23,33 @@ const App = () => {
           let numB = parseInt(b[0].split('. ')[0]);
           return numA - numB;
         }));
+
+        if(response.status===200){
+        setNoOutput(true)
+      }
         setError('');
       } else {
         setError('Please enter a valid URL');
         setTableData([]);
+        setNoOutput(false);
+
       }
     } catch (error) {
       if (error.response) {
         if (error.response.status === 404) {
           setError('Resource not found');
         } else {
-          setError('Error fetching data from the server');
+          setError('Error fetching data from the server / Invalid url');
         }
       } else {
         setError('Network error, please try again later');
       }
       setTableData([]);
+      setNoOutput(false)
+
     } finally {
       setLoading(false);
+
     }
   };
 
@@ -79,7 +89,7 @@ const App = () => {
             <div className="loading">Loading...</div>
           ) : (
             tableData.length === 0 ? (
-              <div>NO OUTPUT</div>
+              <div>{noOutput && <p>NO OUTPUT</p>}</div>
             ) : (
               <div className='tableContainer'>
                 <motion.table
