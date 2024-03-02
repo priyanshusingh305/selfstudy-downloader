@@ -82,11 +82,11 @@ const App = () => {
                 onChange={(e) => setUrl(e.target.value)}
               />
             </label>
-            <button type="submit">Download</button>
+            <button  className='button' type="submit"><span>Download</span></button>
           </form>
           {error && <p>{error}</p>}
           {loading ? (
-            <div className="loading">Loading...</div>
+            <div className="loading"><div className="lds-hourglass"></div></div>
           ) : (
             tableData.length === 0 ? (
               <div>{noOutput && <p>NO OUTPUT</p>}</div>

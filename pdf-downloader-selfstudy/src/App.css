@@ -48,23 +48,136 @@ input[type="text"] {
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+.button {
+  display: inline-block;
+  border-radius: 7px;
+  border: none;
+  background: #1875FF;
+  color: white;
+  font-family: inherit;
+  text-align: center;
+  font-size: 13px;
+  box-shadow: 0px 14px 56px -11px #1875FF;
+  width: 10em;
+  padding: 1em;
+  transition: all 0.4s;
+  cursor: pointer;
+ }
+ 
+ .button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s;
+  
+ }
+ 
+ .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: none;
+  background: #0ba360;
+  background: linear-gradient(
+    to right,
+    #0ba360,#3cba92
+  );
+  color: white;
+  font-family: inherit;
+  text-align: center;
+  font-size: 13px;
+  box-shadow: 0px 14px 56px -11px #0ba360;
+  width: 11em;
+  padding: 0.7em;
+  transition: all 0.4s;
+  cursor: pointer;
+}
 
+.button svg {
+  width: 25px;
+  height: 25px;
+}
+
+.button svg path {
+  fill: white
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s;
+}
+
+.button span:after {
+  content: 'for free';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.7s;
+}
+
+.button:hover span {
+  padding-right: 3.80em;
+}
+
+.button:hover span:after {
+  opacity: 4;
+  right: 0;
+}
 button[type="submit"] {
   background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
   margin-top: 2%;
   margin-right: 5%;
-  border: none;
+  /* border: none; */
   border-radius: 4px;
   cursor: pointer;
   float: right;
   margin-bottom:2%;
 }
+.loading{
+  display: flex;
+  justify-content: center;
+}
+.lds-hourglass {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  justify-self:center;
+}
 
-button[type="submit"]:hover {
-  background-color: #45a049;
+.lds-hourglass:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #D38007;
+  border-color: #D38007 transparent #D38007 transparent;
+  animation: lds-hourglass 1.2s infinite;
+}
 
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  100% {
+    transform: rotate(1800deg);
+  }
 }
 
 table{
@@ -133,7 +246,7 @@ table tr:last-child td:last-child {
 
   button[type="submit"] {
     width: 90%;
-    justify-self: center;
+    /* justify-self: center; */
   
   }
 }

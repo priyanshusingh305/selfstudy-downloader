@@ -49,22 +49,6 @@ app.get('/', async (req, res) => {
 });
  
 // listdata
-//   const listItems = $('div.sample-paper ul.colored-links li');
-//   const listData=[]
-// // Iterate over each list item and extract data
-// listItems.each(async(index, element) => {
-//     const chapterNumber = $(element).find('span').text().trim();
-//     const chapterName = $(element).find('em.chapterName').text().trim();
-//     const pdfLinks = $(element).find('.download-pdf a');
-//     const pdfNormalLink = pdfLinks.eq(0).attr('href');
-//     // console.log(PDF Normal Link: https://www.selfstudys.com/${pdfNormalLink});
-//     const newURl=`https://www.selfstudys.com/${pdfNormalLink}`
-//     const htmldata = await axios.get(newURl);
-    
-//     const a = cheerio.load(htmldata.data);
-//     const sourceLink = a('div.pdf-content').find('div.PDFFlip').attr('source');
-//     listData.push([chapterNumber+". "+chapterName,sourceLink]) 
-//  });
 const listItems = $('div.sample-paper ul.colored-links li');
 const listData = [];
 
