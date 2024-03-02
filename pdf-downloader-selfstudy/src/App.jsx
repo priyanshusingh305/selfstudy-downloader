@@ -85,7 +85,7 @@ const App = () => {
             <button  className='button' type="submit"><span>Download</span></button>
           </form>
           {error && <p>{error}</p>}
-          {loading ? (
+          {loading? (
             <div className="loading"><div className="lds-hourglass"></div></div>
           ) : (
             tableData.length === 0 ? (
