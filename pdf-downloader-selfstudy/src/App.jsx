@@ -107,7 +107,7 @@ const App = () => {
                       <motion.tr key={index}>
                         <td>{data[0]}</td>
                         <td>
-                          <a className='anchor' href={data[1]} target="_blank" rel="noopener noreferrer">Download</a>
+                        <button className='button' onClick={() => window.open(data[1], '_blank', 'noopener noreferrer')}><span>Download</span></button>
                         </td>
                       </motion.tr>
                     ))}
