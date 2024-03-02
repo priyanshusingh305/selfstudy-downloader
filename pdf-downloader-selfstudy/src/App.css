@@ -243,6 +243,9 @@ table tr:last-child td:last-child {
 
 
   }
+  .tableContainer{
+    padding:4%;
+  }
 
   button[type="submit"] {
     width: 90%;
