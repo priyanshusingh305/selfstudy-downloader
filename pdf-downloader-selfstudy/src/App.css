@@ -233,7 +233,9 @@ table tr:last-child td:last-child {
   color:grey;
 }
 @media (max-width: 600px) {
-
+  form{
+    padding:2%;
+  }
   .container{
     width: 100%;
   }
