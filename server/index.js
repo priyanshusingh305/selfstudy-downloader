@@ -13,7 +13,6 @@ function convertPdfUrlToSiteUrl(pdfUrl) {
   // Construct the site URL with the identifier
   const siteBaseUrl = 'https://www.selfstudys.com/sitepdfs/';
   const siteUrl = `${siteBaseUrl}${identifierWithExtension}`;
-
   return siteUrl;
 }
 // Endpoint to scrape links from a table on a webpage
@@ -84,7 +83,7 @@ const promises = listItems.map(async (index, element) => {
 
 // Wait for all promises to resolve
 await Promise.all(promises);
-console.log(listData)
+// console.log(listData)
     if(listData.length<=0)
     res.json(tableData);
   else

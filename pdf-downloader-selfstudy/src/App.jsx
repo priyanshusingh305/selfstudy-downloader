@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion'; // Import motion and useAnimation from framer-motion
+import { motion, useAnimation } from 'framer-motion'; 
 import axios from 'axios';
 import "./App.css"
 
@@ -7,32 +7,48 @@ const App = () => {
   const [url, setUrl] = useState("");
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // State to manage loading
-
-  const tableControls = useAnimation(); // Initialize animation controls
+  const [loading, setLoading] = useState(false); 
+  const tableControls = useAnimation(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true when fetching data starts
+    setLoading(true);
     try {
-      let base_url=import.meta.env.VITE_REACT_API_URL
-      const response = await axios.get(`${base_url}/?url=${url}`);
-      setTableData(response.data.sort((a, b) => {
-        let numA = parseInt(a[0].split('. ')[0]);
-        let numB = parseInt(b[0].split('. ')[0]);
-        return numA - numB;
-    }));
-      setError('');
+      if (isValidUrl(url)) {
+        let base_url = import.meta.env.VITE_REACT_API_URL
+        const response = await axios.get(`${base_url}/?url=${url}`);
+        setTableData(response.data.sort((a, b) => {
+          let numA = parseInt(a[0].split('. ')[0]);
+          let numB = parseInt(b[0].split('. ')[0]);
+          return numA - numB;
+        }));
+        setError('');
+      } else {
+        setError('Please enter a valid URL');
+        setTableData([]);
+      }
     } catch (error) {
-      setError('Error fetching data from the server');
+      if (error.response) {
+        if (error.response.status === 404) {
+          setError('Resource not found');
+        } else {
+          setError('Error fetching data from the server');
+        }
+      } else {
+        setError('Network error, please try again later');
+      }
       setTableData([]);
     } finally {
-      setLoading(false); // Set loading to false when data fetching ends
+      setLoading(false);
     }
   };
 
+  const isValidUrl = (url) => {
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlRegex.test(url);
+  };
+
   useEffect(() => {
-    // Trigger animation when tableData changes
     tableControls.start({
       opacity: 1,
       y: 0,
@@ -63,29 +79,31 @@ const App = () => {
             <div className="loading">Loading...</div>
           ) : (
             tableData.length === 0 ? (
-              <div></div>
+              <div>NO OUTPUT</div>
             ) : (
-              <motion.table
-                initial={{ opacity: 0, y: -20 }}
-                animate={tableControls} // Use animation controls for animating
-              >
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Download</th>
-                  </tr>
-                </thead>
-                <motion.tbody>
-                  {tableData.map((data, index) => (
-                    <motion.tr key={index}>
-                      <td>{data[0]}</td>
-                      <td>
-                        <a className='anchor' href={data[1]} target="_blank" rel="noopener noreferrer">Download</a>
-                      </td>
-                    </motion.tr>
-                  ))}
-                </motion.tbody>
-              </motion.table>
+              <div className='tableContainer'>
+                <motion.table
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={tableControls}
+                >
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Download</th>
+                    </tr>
+                  </thead>
+                  <motion.tbody>
+                    {tableData.map((data, index) => (
+                      <motion.tr key={index}>
+                        <td>{data[0]}</td>
+                        <td>
+                          <a className='anchor' href={data[1]} target="_blank" rel="noopener noreferrer">Download</a>
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </motion.tbody>
+                </motion.table>
+              </div>
             )
           )}
         </div>
