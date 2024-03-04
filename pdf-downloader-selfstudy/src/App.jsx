@@ -29,7 +29,7 @@ const App = () => {
       }
         setError('');
       } else {
-        setError('Please enter a valid URL');
+        setError('Please enter a valid selfstudys URL');
         setTableData([]);
         setNoOutput(false);
 
@@ -54,7 +54,7 @@ const App = () => {
   };
 
   const isValidUrl = (url) => {
-    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    const urlRegex = /^https:\/\/www\.selfstudys\.com\/?/;
     return urlRegex.test(url);
   };
 
