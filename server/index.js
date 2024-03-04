@@ -69,9 +69,20 @@ const promises = listItems.map(async (index, element) => {
 
 // pdf
 const pdfData=[]
+function isValidURL(string) {
+  // Regular expression to check URL format
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(string);
+}
 const sourceLink = $('div.pdf-content').find('div.PDFFlip').attr('source');
 const sourceName= $('div.ft-lora').find('h1').text()
-if(sourceName!="" && sourceLink!==null){
+console.log(sourceLink)
+if(sourceName!="" && isValidURL(sourceLink)){
 pdfData.push([sourceName,sourceLink])}
 
 

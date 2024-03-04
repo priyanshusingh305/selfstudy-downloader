@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion'; 
+import {  motion, useAnimation } from 'framer-motion'; 
 import axios from 'axios';
 import "./App.css"
 
@@ -84,12 +84,12 @@ const App = () => {
             </label>
             <button  className='button' type="submit"><span>Download</span></button>
           </form>
-          {error && <p>{error}</p>}
+          {error && <p style={{color: "#D63301"}}>{error}</p>}
           {loading? (
             <div className="loading"><div className="lds-hourglass"></div></div>
           ) : (
             tableData.length === 0 ? (
-              <div>{noOutput && <p>NO OUTPUT</p>}</div>
+              <div>{noOutput && <p>No Output/Invalid Input</p>}</div>
             ) : (
               <div className='tableContainer'>
                 <motion.table
