@@ -8,6 +8,7 @@ app.use(cors());
 function convertPdfUrlToSiteUrl(pdfUrl) {
   // Extract the unique identifier from the PDF URL
   const parts = pdfUrl.split('/');
+  // console.log(parts);
   const identifierWithExtension = parts.pop().split('.')[0]; // Remove the file extension
 
   // Construct the site URL with the identifier
@@ -27,7 +28,7 @@ app.get('/', async (req, res) => {
     const response = await axios.get(url);
     // console.log("response : ", response.data)
     const $ = cheerio.load(response.data);
-    
+    //tableDATA
     // Select the table you want to scrape (replace 'table-selector' with the appropriate CSS selector for your table)
     const table = $('table > tbody > tr');
     const tableData = [];
@@ -61,18 +62,31 @@ const promises = listItems.map(async (index, element) => {
   const newURl = `https://www.selfstudys.com/${pdfNormalLink}`;
   const htmldata = await axios.get(newURl);
   const a = cheerio.load(htmldata.data);
-  const sourceLink = a('div.pdf-content').find('div.PDFFlip').attr('source');
-  listData.push([chapterNumber + ". " + chapterName, sourceLink]);
+  const sourceLinks = a('div.pdf-content').find('div.PDFFlip').attr('source');
+  listData.push([chapterNumber + ". " + chapterName, sourceLinks]);
 }).get();
+
+
+// pdf
+const pdfData=[]
+const sourceLink = $('div.pdf-content').find('div.PDFFlip').attr('source');
+const sourceName= $('div.ft-lora').find('h1').text()
+if(sourceName!="" && sourceLink!==null){
+pdfData.push([sourceName,sourceLink])}
+
 
 // Wait for all promises to resolve
 await Promise.all(promises);
-// console.log(listData)
-    if(listData.length<=0)
-    res.json(tableData);
-  else
+    if(listData.length>0){
     res.json(listData);
-
+    }
+  else
+  if(tableData.length>0)
+    res.json(tableData);
+  else{
+    res.json(pdfData);
+  }
+  
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal Server Error' });
