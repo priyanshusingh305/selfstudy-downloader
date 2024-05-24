@@ -107,7 +107,9 @@ const App = () => {
                       <motion.tr key={index}>
                         <td>{data[0]}</td>
                         <td>
+                        <div className="buttonContainer">
                         <button className='button' onClick={() => window.open(data[1], '_blank', 'noopener noreferrer')}><span>Download</span></button>
+                        </div>
                         </td>
                       </motion.tr>
                     ))}

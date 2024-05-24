@@ -262,3 +262,9 @@ table tr:last-child td:last-child {
   
   }
 }
+
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
