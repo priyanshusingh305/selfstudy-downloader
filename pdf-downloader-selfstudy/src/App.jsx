@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {  motion, useAnimation } from 'framer-motion'; 
 import axios from 'axios';
 import "./App.css"
+import Coffee from './Coffee';
 
 const App = () => {
   const [url, setUrl] = useState("");
@@ -118,6 +119,9 @@ const App = () => {
               </div>
             )
           )}
+        </div>
+        <div className='coffeeContainer'>
+        <Coffee/>
         </div>
       </div>
     </>
