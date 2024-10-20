@@ -43,9 +43,9 @@ const Text = styled.span`
 
 function Coffee() {
   return (
-    <Button target="_blank" href="https://www.buymeacoffee.com/akapriyanshudev">
-      <Image src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" />
-      <Text>Buy me a coffee</Text>
+    <Button target="_blank" href="https://r.honeygain.me/PRIYA6E199">
+      <Image src="https://dashboard.honeygain.com/images/achievements/reward_types/sticker.svg" alt="Honeygain" />
+      <Text>Join Honeygain</Text>
     </Button>
   );
 }
